@@ -42,12 +42,8 @@ RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
 # Install Wordpress
-ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
-RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
-RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
-RUN rm -rf /usr/share/nginx/www
-RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
-RUN chown -R www-data:www-data /usr/share/nginx/www
+VOLUMES ["/usr/share/nginx/www"]
+RUN mkdir /usr/share/nginx/www
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh

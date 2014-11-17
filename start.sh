@@ -45,6 +45,7 @@ if ( count( \$plugins ) === 0 ) {
 }
 ENDL
 
+  chown -R www-data:www-data /usr/share/nginx/www
   chown www-data:www-data /usr/share/nginx/www/wp-config.php
 
   mysqladmin -u root password $MYSQL_PASSWORD

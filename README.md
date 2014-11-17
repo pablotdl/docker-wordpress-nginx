@@ -9,7 +9,7 @@ You can check out his [Apache version here](https://github.com/jbfink/docker-wor
 ## Installation
 
 ```
-$ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
+$ git clone git@github.com:pablotdl/docker-wordpress-nginx.git
 $ cd docker-wordpress-nginx
 $ sudo docker build -t="docker-wordpress-nginx" .
 ```
@@ -19,7 +19,7 @@ $ sudo docker build -t="docker-wordpress-nginx" .
 To spawn a new instance of wordpress on port 80.  The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
 
 ```bash
-$ sudo docker run -p 80:80 --name docker-wordpress-nginx -d docker-wordpress-nginx
+$ sudo docker run -p <local_port>:80 -p 3307:3306 -v path_to_wordpress:/usr/share/nginx/www --name docker-wordpress-nginx -d docker-wordpress-nginx
 ```
 
 Start your newly created docker.
@@ -33,11 +33,11 @@ After starting the docker-wordpress-nginx check to see if it started and the por
 ```
 $ sudo docker ps
 
-0.0.0.0:80 -> 80/tcp docker-wordpress-nginx
+0.0.0.0:<local_port> -> 80/tcp docker-wordpress-nginx
 ```
 
 You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-http://127.0.0.1:80
+http://127.0.0.1:<local_port>
 ```
